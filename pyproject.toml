@@ -1,0 +1,21 @@
+[project]
+name = "eng"
+version = "0.1.0"
+description = "The easiest programming language ever"
+authors = [
+  { name = "Ashwanth S", email = "fi.programming.tamil@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
+
+[project.scripts]
+eng = "interpreter:main"  # <- No folder prefix since interpreter.py is in root
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,30 @@
+ask "What is your name?" and save as name
+say "Hello " + name
+
+if name is "Alex"
+  say "Welcome back!"
+elif name is "Bob"
+  say "Hi Bob!"
+else
+  say "Nice to meet you!"
+
+let x be 5 + 2
+say "5 + 2 = " + x
+
+define greet
+  say "This is a function"
+  return "done"
+
+call greet
+
+repeat 3 times
+  say "Repeating..."
+
+let counter be 0
+while counter < 3
+  say "x is " + counter
+  let counter be counter + 1
+
+save "log.txt" with "Saved this log"
+load "log.txt" into filedata
+say filedata
