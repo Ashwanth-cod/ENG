@@ -1,0 +1,62 @@
+import "mathutils"
+
+say "=== Variable + Expression Demo ==="
+let a be 5
+let b be 3.5
+let message be "Sum: "
+say message + (a + b)
+
+let radius be 2
+let pi be 3.1415
+let area be pi * radius * radius
+say "Area: " + area
+
+say "=== Conditionals Demo ==="
+let age be 20
+if age >= 18
+  say "Adult"
+elif age >= 13
+  say "Teen"
+else
+  say "Child"
+
+say "=== Repeat Loop Demo ==="
+repeat 3
+  say "Repeating..."
+
+say "=== While Loop Demo ==="
+let count be 0
+while count < 3
+  say "While loop count: " + count
+  let count be count + 1
+
+say "=== List & Dict Demo ==="
+let nums be [1, 2, 3]
+let user be {"name": "Alice", "age": 25}
+say user["name"]
+
+say "=== Function + Type Check Demo ==="
+define greet name:str -> void
+  say "Hello, " + name
+
+call greet "Alice"
+
+define add a:int b:int -> int
+  return a + b
+
+let result be call add 5 10
+say "Result: " + result
+
+define bad_function val:int -> int
+  say "This should return but doesn't"
+
+call bad_function 42
+
+say "=== JSON Save/Load Demo ==="
+let temp be 30
+let weather be "Sunny"
+savejson "env.json"
+loadjson "env.json"
+say "Temp: " + temp + ", Weather: " + weather
+
+say "=== End of Demo ==="

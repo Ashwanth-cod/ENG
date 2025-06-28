@@ -1,0 +1,10 @@
+say "=== Math Utilities Loaded ==="
+
+define square x:int -> int
+  return x * x
+
+define cube x:int -> int
+  return x * x * x
+
+say "Square of 5 is: " + call square 5
+say "Cube of 3 is: " + call cube 3
