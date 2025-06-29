@@ -3,54 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ENG Programming Language</title>
+  <title>ENG Language Documentation</title>
   <style>
+    :root {
+      color-scheme: light dark;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #ffffff;
       margin: 0;
-      padding: 40px;
-      line-height: 1.6;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg, #fff);
+      color: var(--fg, #000);
+      transition: background-color 0.3s, color 0.3s;
     }
-    h1 {
-      font-size: 2.5rem;
-      color: #222;
-    }
-    p {
-      max-width: 700px;
-      margin-bottom: 20px;
-    }
-    a.button {
-      display: inline-block;
-      background: #007BFF;
+
+    header {
+      background-color: #007acc;
+      padding: 1rem 2rem;
       color: #fff;
-      padding: 12px 24px;
-      text-decoration: none;
-      font-size: 16px;
-      border-radius: 5px;
-      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    a.button:hover {
-      background: #0056b3;
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav a, nav span {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      background: #007acc;
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      margin: 0 0 0.5rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #007acc;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .btn:hover {
+      background: #005fa3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #ccc;
+      margin-top: 2rem;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .section-card {
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      transition: transform 0.2s ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-4px);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { --bg: #121212; --fg: #f0f0f0; }
+      header, .dropdown-content, nav a, nav span, .btn {
+        background-color: #1a1a1a;
+        color: #eee;
+      }
+      .section-card { background: #1f1f1f; border-color: #333; }
+      footer { border-color: #333; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>ENG Language</h1>
+    <nav>
+      <ul>
+        <li><a href="docs/intro.html">Intro</a></li>
+        <li><a href="docs/getting-started.html">Getting Started</a></li>
+        <li class="dropdown">
+          <span>Syntax ▾</span>
+          <ul class="dropdown-content">
+            <li><a href="docs/syntax-variables.html">Variables</a></li>
+            <li><a href="docs/syntax-functions.html">Functions</a></li>
+            <li><a href="docs/syntax-loops.html">Loops</a></li>
+            <li><a href="docs/syntax-conditionals.html">Conditionals</a></li>
+            <li><a href="docs/syntax-io.html">I/O</a></li>
+          </ul>
+        </li>
+        <li><a href="docs/reference.html">Reference</a></li>
+        <li><a href="docs/playground.html">Playground</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <h1>Welcome to ENG Language</h1>
-  <p><strong>ENG</strong> is a beginner-friendly, English-like programming language designed for simplicity and readability. You write code the way you think, using natural language constructs like <code>let x be 5</code> or <code>if x is 10</code>.</p>
+  <main>
+    <section>
+      <h2>Welcome to the English Programming Language</h2>
+      <p><strong>ENG</strong> is a human-readable interpreted language designed to teach programming concepts through intuitive English-like syntax. Its goal is to make coding as natural as writing instructions.</p>
+      <a class="btn" href="docs/getting-started.html">Get Started →</a>
+    </section>
 
-  <h2>Features:</h2>
-  <ul>
-    <li>Readable syntax using plain English</li>
-    <li>Variables, conditionals, loops, and functions</li>
-    <li>REPL and script-based execution</li>
-    <li>JSON saving/loading of variable states</li>
-  </ul>
+    <section class="sections">
+      <div class="section-card">
+        <h3>Variables</h3>
+        <p>Declare and manipulate values using intuitive English syntax like <code>let x be 10</code>.</p>
+        <a class="btn" href="docs/syntax-variables.html">Learn More</a>
+      </div>
 
-  <h2>Getting Started</h2>
-  <p>Click below to start coding in the ENG Playground!</p>
-  <a class="button" href="playground.html">Go to Playground</a>
+      <div class="section-card">
+        <h3>Functions</h3>
+        <p>Write reusable blocks using <code>define greet(name)</code> style function definitions.</p>
+        <a class="btn" href="docs/syntax-functions.html">Learn More</a>
+      </div>
 
+      <div class="section-card">
+        <h3>Loops</h3>
+        <p>Use <code>repeat</code> and <code>while</code> to iterate with natural control flow.</p>
+        <a class="btn" href="docs/syntax-loops.html">Learn More</a>
+      </div>
+
+      <div class="section-card">
+        <h3>Conditionals</h3>
+        <p>Control program logic using <code>if</code>, <code>else</code>, and logical comparisons.</p>
+        <a class="btn" href="docs/syntax-conditionals.html">Learn More</a>
+      </div>
+
+      <div class="section-card">
+        <h3>I/O & Output</h3>
+        <p>Display messages or prompt the user using simple <code>say</code> and input commands.</p>
+        <a class="btn" href="docs/syntax-io.html">Learn More</a>
+      </div>
+
+      <div class="section-card">
+        <h3>Playground</h3>
+        <p>Try the language live in the browser with an interactive editor and instant feedback.</p>
+        <a class="btn" href="docs/playground.html">Open Playground</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 ENG Language. Built with ❤️ for learning and creativity.</p>
+  </footer>
 </body>
 </html>
