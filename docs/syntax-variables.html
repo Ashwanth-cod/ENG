@@ -2,8 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Variables - ENG Docs</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ENG Syntax: Variables</title>
+  <style>
+    :root { color-scheme: light dark; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg, #fff);
+      color: var(--fg, #000);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: #007acc;
+      padding: 1rem 2rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav a, nav span {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      background: #007acc;
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    code {
+      background: #eee;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #007acc;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .btn:hover {
+      background: #005fa3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #ccc;
+      margin-top: 2rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { --bg: #121212; --fg: #f0f0f0; }
+      header, .dropdown-content, nav a, nav span, .btn {
+        background-color: #1a1a1a;
+        color: #eee;
+      }
+      pre { background: #1e1e1e; color: #eee; }
+      footer { border-color: #333; }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -12,27 +122,49 @@
       <ul>
         <li><a href="intro.html">Intro</a></li>
         <li><a href="getting-started.html">Getting Started</a></li>
-        <li><a href="syntax-variables.html">Variables</a></li>
-        <li><a href="syntax-functions.html">Functions</a></li>
+        <li class="dropdown">
+          <span>Syntax ▾</span>
+          <ul class="dropdown-content">
+            <li><a href="syntax-variables.html">Variables</a></li>
+            <li><a href="syntax-functions.html">Functions</a></li>
+            <li><a href="syntax-loops.html">Loops</a></li>
+            <li><a href="syntax-conditionals.html">Conditionals</a></li>
+            <li><a href="syntax-io.html">I/O</a></li>
+          </ul>
+        </li>
         <li><a href="reference.html">Reference</a></li>
+        <li><a href="playground.html">Playground</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <h2>Variables</h2>
-    <p>Declare variables with readable syntax:</p>
+    <p>Variables let you store values for use later in your program.</p>
 
-    <pre><code>let x be 10
-let name be "Alice"</code></pre>
+    <h3>Basic Syntax</h3>
+    <p>Use <code>let &lt;name&gt; be &lt;value&gt;</code> to create a variable:</p>
+    <pre><code>let age be 25
+let name be "Alice"
+let pi be 3.14</code></pre>
 
-    <p>You can assign expressions too:</p>
+    <h3>Usage</h3>
+    <p>After declaring a variable, you can use it in expressions:</p>
+    <pre><code>say name
+say age + 5</code></pre>
 
-    <pre><code>let sum be x + 5</code></pre>
+    <h3>Reassigning</h3>
+    <p>To update a variable, just use <code>let</code> again:</p>
+    <pre><code>let age be 30</code></pre>
+
+    <h3>Dynamic Typing</h3>
+    <p>ENG variables are dynamically typed, so you can assign any type of value (numbers, strings, etc.).</p>
+
+    <a class="btn" href="playground.html#code=let%20name%20be%20%22Alice%22%0Asay%20%22Hello%2C%20%22%20%2B%20name">See in Playground →</a>
   </main>
 
   <footer>
-    <p>© 2025 ENG Language</p>
+    <p>© 2025 ENG Language. Built with ❤️ for learning and creativity.</p>
   </footer>
 </body>
 </html>
