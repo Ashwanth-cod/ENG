@@ -140,10 +140,8 @@
 
   <main>
     <div class="editor-wrap">
-      <textarea id="editor">// ENG code example
-say "Hello!"
-let x be 5
-say x * 2</textarea>
+<textarea id="editor"></textarea>
+
       <button onclick="runCode()">▶ Run</button>
     </div>
 
@@ -226,6 +224,15 @@ say x * 2</textarea>
         return expr;
       }
     }
+    const storedCode = localStorage.getItem("engCode");
+if (storedCode) {
+  editorEl.value = storedCode;
+  localStorage.removeItem("engCode"); // Optional: clear after use
+} else {
+  editorEl.value = `// ENG code example\nsay "Hello!"\nlet x be 5\nsay x * 2`;
+}
+
+
   </script>
 </body>
 </html>

@@ -68,19 +68,18 @@
       margin-top: 0;
     }
 
-    code {
-      background: #eee;
-      padding: 0.2em 0.4em;
-      border-radius: 4px;
-      font-family: monospace;
-    }
+    pre, code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  white-space: pre;
+  line-height: 1.5;
+}
 
-    pre {
-      background: #f4f4f4;
-      padding: 1rem;
-      border-radius: 6px;
-      overflow-x: auto;
-    }
+
+@media (prefers-color-scheme: dark) {
+  pre {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
 
     .btn {
       display: inline-block;
@@ -160,8 +159,16 @@ say age + 5</code></pre>
     <h3>Dynamic Typing</h3>
     <p>ENG variables are dynamically typed, so you can assign any type of value (numbers, strings, etc.).</p>
 
-    <a class="btn" href="playground.html#code=let%20name%20be%20%22Alice%22%0Asay%20%22Hello%2C%20%22%20%2B%20name">See in Playground →</a>
+    <button class="btn" onclick="openInPlayground()">See in Playground →</button>
   </main>
+
+    <script>
+  function openInPlayground() {
+    const code = `let x be 10\nsay x\nlet y be x + 5\nsay y`;
+    localStorage.setItem("engCode", code);
+    window.open("../playground.html", "_blank");
+  }
+</script>
 
   <footer>
     <p>© 2025 ENG Language. Built with ❤️ for learning and creativity.</p>
