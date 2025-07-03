@@ -82,13 +82,7 @@
       overflow-y: auto;
     }
 
-    .editor-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .output-wrap {
+    .editor-wrap, .output-wrap {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -140,10 +134,7 @@
 
   <main>
     <div class="editor-wrap">
-      <textarea id="editor">// ENG code example
-say "Hello!"
-let x be 5
-say x * 2</textarea>
+      <textarea id="editor"></textarea>
       <button onclick="runCode()">▶ Run</button>
     </div>
 
@@ -157,16 +148,30 @@ say x * 2</textarea>
   </main>
 
   <script>
-    const outputEl = document.getElementById("output");
     const editorEl = document.getElementById("editor");
+    const outputEl = document.getElementById("output");
 
-    // Auto-theme based on OS
+    editorEl.value = `// Full ENG example
+say "Welcome to ENG!"
+let x be 3
+let y be x + 4
+say "x + y ="
+say x + y
+
+define double n:
+  say n * 2
+
+call double 10
+call double y
+
+repeat 3 times:
+  say "Repeating..."`;
+
     window.addEventListener("load", () => {
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
     });
 
-    // Toggle theme manually
     document.querySelector(".theme-toggle").onclick = () => {
       const current = document.documentElement.getAttribute("data-theme");
       document.documentElement.setAttribute("data-theme", current === "dark" ? "light" : "dark");
@@ -175,12 +180,122 @@ say x * 2</textarea>
     function runCode() {
       const code = editorEl.value;
       try {
-        const output = runENG(code);
+        const output = interpretENG(code);
         outputEl.textContent = output.trim() || "// (no output)";
       } catch (e) {
         outputEl.textContent = "Error: " + e.message;
       }
     }
+
+    function interpretENG(code) {
+      const lines = code
+        .split("\n")
+        .map(l => l.trim())
+        .filter(l => l && !l.startsWith("//"));
+
+      const vars = {};
+      const funcs = {};
+      const out = [];
+
+      let i = 0;
+      while (i < lines.length) {
+        const line = lines[i];
+
+        if (line.startsWith("say ")) {
+          out.push(evalExpr(line.slice(4), vars));
+
+        } else if (line.startsWith("let ")) {
+          const [name, expr] = line.slice(4).split(" be ");
+          vars[name.trim()] = evalExpr(expr, vars);
+
+        } else if (line.startsWith("define ")) {
+          const fnHeader = line.slice(7).split(":")[0];
+          const [fnName, param] = fnHeader.trim().split(" ");
+          const body = [];
+
+          i++;
+          while (i < lines.length && !lines[i].includes(":") && !lines[i].startsWith("define")) {
+            body.push(lines[i]);
+            i++;
+          }
+          funcs[fnName] = { param, body };
+          i--;
+
+        } else if (line.startsWith("call ")) {
+          const [fnName, argExpr] = line.slice(5).split(" ");
+          const argVal = evalExpr(argExpr, vars);
+
+          if (funcs[fnName]) {
+            const { param, body } = funcs[fnName];
+            const fnVars = { ...vars, [param]: argVal };
+            for (const stmt of body) {
+              if (stmt.startsWith("say ")) {
+                out.push(evalExpr(stmt.slice(4), fnVars));
+              }
+            }
+          } else {
+            out.push(`Error: function '${fnName}' not defined`);
+          }
+
+        } else if (line.startsWith("repeat ")) {
+          const match = line.match(/^repeat (\d+) times:/);
+          if (match) {
+            const times = parseInt(match[1]);
+            const body = [];
+
+            i++;
+            while (i < lines.length && !lines[i].includes(":") && !lines[i].startsWith("repeat")) {
+              body.push(lines[i]);
+              i++;
+            }
+            i--;
+
+            for (let r = 0; r < times; r++) {
+              for (const stmt of body) {
+                if (stmt.startsWith("say ")) {
+                  out.push(evalExpr(stmt.slice(4), vars));
+                }
+              }
+            }
+          }
+
+        } else {
+          out.push("Unrecognized: " + line);
+        }
+
+        i++;
+      }
+
+      return out.join("\n");
+    }
+
+function evalExpr(expr, vars) {
+  try {
+    // Remove string literals so we don't misinterpret words inside them as variables
+    const noStrings = expr.replace(/(["'`])(?:\\.|[^\\])*?\1/g, "");
+
+    // Find all identifiers (words that look like variable names)
+    const varRegex = /\b[a-zA-Z_]\w*\b/g;
+    const usedVars = noStrings.match(varRegex) || [];
+
+    for (const name of usedVars) {
+      if (!(name in vars) && !isKeyword(name)) {
+        throw new Error(`Variable '${name}' is not defined`);
+      }
+    }
+
+    // Evaluate the expression safely
+    const fn = new Function(...Object.keys(vars), `return (${expr})`);
+    return fn(...Object.values(vars));
+  } catch (e) {
+    return `Error in expression "${expr}": ${e.message}`;
+  }
+}
+
+// Helper to ignore JS built-in keywords or literals
+function isKeyword(name) {
+  return ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity'].includes(name) || !isNaN(Number(name));
+}
 
     function clearOutput() {
       outputEl.textContent = "// Output cleared.";
@@ -190,41 +305,7 @@ say x * 2</textarea>
       const text = outputEl.textContent;
       navigator.clipboard.writeText(text)
         .then(() => alert("Output copied!"))
-        .catch(err => {
-          console.error("Clipboard error:", err);
-          prompt("Copy manually:", text);
-        });
-    }
-
-    function runENG(code) {
-      const lines = code
-        .split("\n")
-        .map(l => l.trim())
-        .filter(l => l && !l.startsWith("//")); // filter out comments
-
-      const vars = {};
-      const out = [];
-
-      for (const line of lines) {
-        if (line.startsWith("say ")) {
-          out.push(evalExpr(line.slice(4), vars));
-        } else if (line.startsWith("let ")) {
-          const [name, expr] = line.slice(4).split(" be ");
-          vars[name.trim()] = evalExpr(expr, vars);
-        } else {
-          out.push("Unrecognized: " + line);
-        }
-      }
-
-      return out.join("\n");
-    }
-
-    function evalExpr(expr, vars) {
-      try {
-        return Function(...Object.keys(vars), "return " + expr)(...Object.values(vars));
-      } catch (e) {
-        return expr;
-      }
+        .catch(() => prompt("Copy manually:", text));
     }
   </script>
 </body>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ENG Reference</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    .copy-btn {
+  margin-top: 0.5rem;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.copy-btn:hover {
+  background-color: #005fa3;
+}
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg, #fff);
+      color: var(--fg, #000);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: #007acc;
+      padding: 1rem 2rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav li {
+      position: relative;
+    }
+
+    nav a, nav span {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      background-color: #007acc;
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      color: #007acc;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    code {
+      background: #e0e0e0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #ccc;
+      margin-top: 3rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { --bg: #121212; --fg: #f0f0f0; }
+      header, .dropdown-content, nav a, nav span {
+        background-color: #1a1a1a;
+        color: #eee;
+      }
+      pre { background: #1f1f1f; color: #f8f8f2; }
+      code { background: #2a2a2a; color: #f8f8f2; }
+      footer { border-color: #333; }
+    }
+
+    #searchInput {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 1rem 0;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#resultsContainer {
+  display: grid;
+  gap: 1rem;
+}
+
+.example-card {
+  background: #f4f4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #007acc;
+}
+
+.example-card pre {
+  background: #eaeaea;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  #searchInput { background: #1e1e1e; color: #fff; border-color: #333; }
+  .example-card { background: #1a1a1a; border-left-color: #3399ff; }
+  .example-card pre { background: #222; color: #eee; }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ENG Language</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="getting-started.html">Getting Started</a></li>
+        <li class="dropdown">
+          <span>Syntax ▾</span>
+          <ul class="dropdown-content">
+            <li><a href="syntax-variables.html">Variables</a></li>
+            <li><a href="syntax-functions.html">Functions</a></li>
+            <li><a href="syntax-loops.html">Loops</a></li>
+            <li><a href="syntax-conditionals.html">Conditionals</a></li>
+            <li><a href="syntax-io.html">I/O</a></li>
+          </ul>
+        </li>
+        <li><a href="reference.html">Reference</a></li>
+        <li><a href="../playground.html">Playground</a></li>
+        <li><a href="../downloads.html">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>ENG Language Reference</h2>
+    <p>This page serves as a quick reference for all major syntax and features of the ENG language.</p>
+
+    <div class="section">
+      <h3>📦 Variables</h3>
+      <pre><code>let x be 5
+let name be "Alice"</code></pre>
+    </div>
+
+    <div class="section">
+      <h3>🧠 Conditionals</h3>
+      <pre><code>if x is greater than 10:
+  say "Big"
+else if x is less than 5:
+  say "Small"
+else:
+  say "Medium"
+end</code></pre>
+    </div>
+
+    <div class="section">
+      <h3>🔁 Loops</h3>
+      <pre><code>repeat 3 times:
+  say "Hello"
+end
+
+let i be 0
+while i is less than 5:
+  say i
+  let i be i + 1
+end</code></pre>
+    </div>
+
+    <div class="section">
+      <h3>🔧 Functions</h3>
+      <pre><code>define greet(name):
+  say "Hello " + name
+end
+
+call greet("ENG")</code></pre>
+    </div>
+
+    <div class="section">
+      <h3>💬 I/O</h3>
+      <pre><code>say "Welcome!"
+let name be input("What is your name?")
+say "Hi " + name</code></pre>
+    </div>
+
+    <div class="section">
+      <h3>🧮 Expressions & Operators</h3>
+      <ul>
+        <li><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> — arithmetic</li>
+        <li><code>is</code>, <code>is not</code> — comparison</li>
+        <li><code>is greater than</code>, <code>is less than</code></li>
+        <li><code>and</code>, <code>or</code>, <code>not</code> — logical</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>📝 Comments</h3>
+      <pre><code># This is a comment</code></pre>
+    </div>
+    <div class="section">
+      <h3>📚 Learn More</h3>
+      <ul>
+        <li><a href="syntax-variables.html">Variables</a></li>
+        <li><a href="syntax-functions.html">Functions</a></li>
+        <li><a href="syntax-loops.html">Loops</a></li>
+        <li><a href="syntax-conditionals.html">Conditionals</a></li>
+        <li><a href="syntax-io.html">Input/Output</a></li>
+      </ul>
+    </div>
+
+        <section>
+  <h2>🔍 Search Code Examples</h2>
+  <input type="text" id="searchInput" placeholder="Search examples..." />
+  <div id="resultsContainer"></div>
+</section>  
+  </main>
+
+  <footer>
+    <p>© 2025 ENG Language. All rights reserved.</p>
+  </footer>
+  <script src="js/search.js"></script>
+
+</body>
+</html>

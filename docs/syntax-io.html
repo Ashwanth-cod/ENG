@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ENG Syntax – Input & Output</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg, #fff);
+      color: var(--fg, #000);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: #007acc;
+      padding: 1rem 2rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav li {
+      position: relative;
+    }
+
+    nav a, nav span {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      background-color: #007acc;
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1, h2, h3 {
+      color: #007acc;
+    }
+
+    .card {
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    code {
+      background: #eee;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+
+    pre {
+      background: #f0f0f0;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #ccc;
+      margin-top: 3rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { --bg: #121212; --fg: #f0f0f0; }
+      header, .dropdown-content, nav a, nav span {
+        background-color: #1a1a1a;
+        color: #eee;
+      }
+      .card { background: #1f1f1f; border-color: #333; }
+      code, pre { background: #1b1b1b; color: #f8f8f2; }
+      footer { border-color: #333; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ENG Language</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="getting-started.html">Getting Started</a></li>
+        <li class="dropdown">
+          <span>Syntax ▾</span>
+          <ul class="dropdown-content">
+            <li><a href="syntax-variables.html">Variables</a></li>
+            <li><a href="syntax-functions.html">Functions</a></li>
+            <li><a href="syntax-loops.html">Loops</a></li>
+            <li><a href="syntax-conditionals.html">Conditionals</a></li>
+            <li><a href="syntax-io.html">I/O</a></li>
+          </ul>
+        </li>
+        <li><a href="reference.html">Reference</a></li>
+        <li><a href="../playground.html">Playground</a></li>
+        <li><a href="../downloads.html">Downloads</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>ENG Syntax: Input and Output</h2>
+    <p>Input and Output (I/O) are essential for interacting with users. ENG uses natural language to handle printing and reading data.</p>
+
+    <div class="card">
+      <h3>🔊 Output with <code>say</code></h3>
+      <pre><code>say "Hello, World!"</code></pre>
+      <p>The <code>say</code> command prints text to the screen.</p>
+    </div>
+
+    <div class="card">
+      <h3>📥 Input with <code>input()</code></h3>
+      <pre><code>let name be input("What is your name?")
+say "Hello " + name</code></pre>
+      <p><code>input()</code> shows a prompt and reads user input. The result can be stored in a variable.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔢 Reading Numbers</h3>
+      <pre><code>let age be number input("How old are you?")
+say "You are " + age + " years old"</code></pre>
+      <p>The <code>number input()</code> pattern ensures the result is stored as a number instead of text.</p>
+    </div>
+
+    <div class="card">
+      <h3>🧪 Mixing Output with Logic</h3>
+      <pre><code>let score be number input("Enter your score:")
+
+if score is greater than 90:
+  say "Excellent!"
+else if score is greater than 70:
+  say "Good job!"
+else:
+  say "Keep trying!"
+end</code></pre>
+    </div>
+
+    <div class="card">
+      <h3>📚 Next Steps</h3>
+      <ul>
+        <li><a href="syntax-conditionals.html">Conditionals</a></li>
+        <li><a href="syntax-functions.html">Functions</a></li>
+        <li><a href="reference.html">ENG Reference</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 ENG Language. Write logic the way you think.</p>
+  </footer>
+</body>
+</html>

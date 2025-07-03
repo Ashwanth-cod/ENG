@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Getting Started with ENG</title>
+  <title>Download ENG Interpreter</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -29,14 +29,14 @@
 
     nav ul {
       list-style: none;
+      padding: 0;
+      margin: 0;
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
-      padding: 0;
-      margin: 0;
     }
 
-    nav li {
+    nav ul li {
       position: relative;
     }
 
@@ -50,7 +50,7 @@
       position: absolute;
       top: 2rem;
       left: 0;
-      background-color: #007acc;
+      background: #007acc;
       display: none;
       flex-direction: column;
       min-width: 200px;
@@ -66,7 +66,8 @@
       margin: auto;
     }
 
-    h1, h2, h3 {
+    h1, h2 {
+      margin: 0 0 0.5rem 0;
       color: #007acc;
     }
 
@@ -89,7 +90,7 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       padding: 1.5rem;
-      margin: 2rem 0;
+      margin-top: 2rem;
     }
 
     code {
@@ -135,7 +136,7 @@
     <h1>ENG Language</h1>
     <nav>
       <ul>
-        <li><a href="../index.html">Home</a></li>
+        <li><a href="intro.html">Intro</a></li>
         <li><a href="getting-started.html">Getting Started</a></li>
         <li class="dropdown">
           <span>Syntax ▾</span>
@@ -148,70 +149,58 @@
           </ul>
         </li>
         <li><a href="reference.html">Reference</a></li>
-        <li><a href="../playground.html">Playground</a></li>
-        <li><a href="../downloads.html">Downloads</a></li>
+        <li><a href="playground.html">Playground</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <h2>Getting Started with ENG</h2>
-    <p>
-      Welcome to ENG — a programming language that reads like English. This guide will help you install ENG, write your first program, and run it locally or online.
-    </p>
+    <h2>Download the ENG Interpreter</h2>
+    <p><strong>ENG</strong> is designed for simplicity and readability. You can run it locally by downloading the Python-based interpreter.</p>
 
     <div class="card">
-      <h3>1. Install Python</h3>
-      <p>ENG is interpreted using Python. Install it from the official site:</p>
-      <ul>
-        <li><a href="https://www.python.org/downloads/" target="_blank">Download Python for Windows, macOS, or Linux</a></li>
-        <li>During installation, enable the option <strong>"Add Python to PATH"</strong></li>
-        <li>After installing, confirm with:</li>
-      </ul>
-      <pre><code>python --version</code></pre>
-    </div>
-
-    <div class="card">
-      <h3>2. Download the ENG Interpreter</h3>
-      <p>
-        Download the official ENG interpreter script:
-      </p>
+      <h3>1. Download the Interpreter</h3>
+      <p>Click below to download the latest version of the ENG interpreter:</p>
       <a class="btn" href="../interpreter.py" download>Download interpreter.py</a>
     </div>
 
     <div class="card">
-      <h3>3. Write Your First Program</h3>
-      <p>Create a new file called <code>hello.eng</code> and add this:</p>
-      <pre><code>say "Hello, world!"</code></pre>
-      <p>This tells ENG to print a message. It's that simple.</p>
+      <h3>2. Install Python</h3>
+      <p>The interpreter requires Python 3.7+ to run.</p>
+      <ul>
+        <li>Visit <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></li>
+        <li>Install Python and check <code>Add to PATH</code> during setup</li>
+        <li>Verify it works by typing <code>python --version</code> in your terminal</li>
+      </ul>
     </div>
 
     <div class="card">
-      <h3>4. Run Your Program</h3>
-      <p>Open a terminal in the same folder and run:</p>
+      <h3>3. Running ENG Code</h3>
+      <p>Once downloaded, you can write an ENG program in a file like <code>hello.eng</code>, and run it:</p>
       <pre><code>python interpreter.py hello.eng</code></pre>
-      <p>Or on Linux/macOS:</p>
+      <p>If you're on macOS/Linux, try:</p>
       <pre><code>python3 interpreter.py hello.eng</code></pre>
     </div>
 
     <div class="card">
-      <h3>5. Try Online</h3>
-      <p>No installation? Try ENG in your browser:</p>
-      <a class="btn" href="../playground.html">Launch Web Playground</a>
+      <h3>4. No Python? Use the Playground</h3>
+      <p>You can try ENG directly in your browser:</p>
+      <a class="btn" href="playground.html">Open Web Playground</a>
     </div>
 
     <div class="card">
-      <h3>Next Steps</h3>
+      <h3>5. Need Help?</h3>
       <ul>
-        <li><a href="syntax-variables.html">Learn about variables</a></li>
-        <li><a href="syntax-functions.html">Write functions</a></li>
-        <li><a href="reference.html">See full language reference</a></li>
+        <li><a href="getting-started.html">Getting Started Guide</a></li>
+        <li><a href="syntax-variables.html">Syntax: Variables</a></li>
+        <li><a href="reference.html">Full Reference</a></li>
       </ul>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 ENG Language. Designed for simplicity and clarity.</p>
+    <p>© 2025 ENG Language. Built for clarity, creativity, and learning.</p>
   </footer>
 </body>
 </html>

@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Greeting",
+    "description": "Basic print example.",
+    "code": "say \"Hello, world!\""
+  },
+  {
+    "title": "Simple Math",
+    "description": "Addition of two variables.",
+    "code": "let x be 5\nlet y be 10\nsay x + y"
+  },
+  {
+    "title": "Repeat Message",
+    "description": "Repeating a message using a loop.",
+    "code": "repeat 3 times:\n  say \"Hi\""
+  },
+  {
+    "title": "Conditional Logic",
+    "description": "Check if value is greater than 10.",
+    "code": "if x is greater than 10:\n  say \"Big\"\nelse:\n  say \"Small\"\nend"
+  },
+  {
+    "title": "Function Example",
+    "description": "Define and call a function.",
+    "code": "define greet(name):\n  say \"Hello \" + name\nend\ncall greet(\"ENG\")"
+  }
+]
