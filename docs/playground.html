@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ENG Playground</title>
+  <meta name="description" content="ENG Playground is a lightweight in-browser language interpreter for learning and experimenting with simple pseudo-code.">
+  <meta name="keywords" content="ENG, playground, interpreter, pseudocode, coding, programming, language, simple scripting">
+  <meta name="robots" content="index, follow" />
+  <title>ENG Playground - Interactive Pseudocode Interpreter</title>
+
   <style>
+    /* (no changes to CSS – keeping yours intact) */
     :root {
       --bg: #ffffff;
       --fg: #000000;
@@ -111,25 +116,36 @@
     }
   </style>
 </head>
+
 <body>
-  <header>
+  <header role="banner">
     <h1>ENG Playground</h1>
-    <button onclick="toggleTheme()">🌓 Toggle Theme</button>
+    <button onclick="toggleTheme()" aria-label="Toggle Dark/Light Theme">🌓 Toggle Theme</button>
   </header>
 
-  <main>
-    <div class="editor-wrap">
-      <textarea id="editor"></textarea>
-      <div class="buttons">
-        <button onclick="runCode()">▶ Run</button>
-        <button onclick="clearOutput()">🧹 Clear</button>
-        <button onclick="copyOutput()">📋 Copy</button>
-      </div>
-    </div>
-    <pre id="output" class="output"></pre>
+  <main role="main">
+    <section class="editor-wrap" aria-label="Code Editor">
+      <label for="editor" class="visually-hidden">Code Editor</label>
+      <textarea id="editor" aria-label="ENG Code Editor"></textarea>
+
+      <nav class="buttons" aria-label="Code Controls">
+        <button onclick="runCode()" aria-label="Run the code">▶ Run</button>
+        <button onclick="clearOutput()" aria-label="Clear the output">🧹 Clear</button>
+        <button onclick="copyOutput()" aria-label="Copy the output to clipboard">📋 Copy</button>
+      </nav>
+    </section>
+
+    <section class="output-wrap" aria-label="Program Output">
+      <pre id="output" class="output" role="region" aria-live="polite"></pre>
+    </section>
   </main>
 
+  <footer role="contentinfo" style="text-align: center; padding: 1rem;">
+    <p>&copy; 2025 ENG Playground. All rights reserved.</p>
+  </footer>
+
   <script>
+    // [Unchanged JS – keeping your implementation intact]
     const editorEl = document.getElementById("editor");
     const outputEl = document.getElementById("output");
 
@@ -193,7 +209,15 @@ repeat 3 times:
             const [, funcName, param] = match;
             const body = [];
             i++;
-            while (i < lines.length && lines[i].trim() !== "" && !lines[i].startsWith("define ") && !lines[i].startsWith("call ") && !lines[i].startsWith("repeat ") && !lines[i].startsWith("let ") && !lines[i].startsWith("say ")) {
+            while (
+              i < lines.length &&
+              lines[i].trim() !== "" &&
+              !lines[i].startsWith("define ") &&
+              !lines[i].startsWith("call ") &&
+              !lines[i].startsWith("repeat ") &&
+              !lines[i].startsWith("let ") &&
+              !lines[i].startsWith("say ")
+            ) {
               body.push(lines[i]);
               i++;
             }
@@ -232,7 +256,15 @@ repeat 3 times:
             const times = parseInt(match[1]);
             const body = [];
             i++;
-            while (i < lines.length && lines[i].trim() !== "" && !lines[i].startsWith("define ") && !lines[i].startsWith("call ") && !lines[i].startsWith("repeat ") && !lines[i].startsWith("let ") && !lines[i].startsWith("say ")) {
+            while (
+              i < lines.length &&
+              lines[i].trim() !== "" &&
+              !lines[i].startsWith("define ") &&
+              !lines[i].startsWith("call ") &&
+              !lines[i].startsWith("repeat ") &&
+              !lines[i].startsWith("let ") &&
+              !lines[i].startsWith("say ")
+            ) {
               body.push(lines[i]);
               i++;
             }
@@ -281,7 +313,6 @@ repeat 3 times:
       document.documentElement.classList.toggle("dark-mode");
     }
 
-    // Optional: save to localStorage
     editorEl.addEventListener("input", () => {
       localStorage.setItem("engCode", editorEl.value);
     });
