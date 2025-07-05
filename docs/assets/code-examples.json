@@ -1,27 +1,252 @@
 [
   {
-    "title": "Greeting",
-    "description": "Basic print example.",
+    "title": "Hello World",
+    "description": "Basic output example.",
     "code": "say \"Hello, world!\""
   },
   {
-    "title": "Simple Math",
-    "description": "Addition of two variables.",
-    "code": "let x be 5\nlet y be 10\nsay x + y"
+    "title": "Add Two Numbers",
+    "description": "Add two values and display the result.",
+    "code": "let a be 7\nlet b be 3\nsay a + b"
   },
   {
-    "title": "Repeat Message",
-    "description": "Repeating a message using a loop.",
-    "code": "repeat 3 times:\n  say \"Hi\""
+    "title": "Square Root",
+    "description": "Calculate square root of a number.",
+    "code": "let number be 16\nlet root be number ^ 0.5\nsay root"
   },
   {
-    "title": "Conditional Logic",
-    "description": "Check if value is greater than 10.",
-    "code": "if x is greater than 10:\n  say \"Big\"\nelse:\n  say \"Small\"\nend"
+    "title": "Area of Triangle",
+    "description": "Compute the area of a triangle using Heron's formula.",
+    "code": "let a be 5\nlet b be 6\nlet c be 7\nlet s be (a + b + c) / 2\nlet area be (s * (s - a) * (s - b) * (s - c)) ^ 0.5\nsay area"
   },
   {
-    "title": "Function Example",
-    "description": "Define and call a function.",
-    "code": "define greet(name):\n  say \"Hello \" + name\nend\ncall greet(\"ENG\")"
+    "title": "Leap Year Check",
+    "description": "Check if a year is a leap year.",
+    "code": "let year be 2024\nif year mod 4 is 0 and year mod 100 is not 0 or year mod 400 is 0:\n  say \"Leap year\"\nelse:\n  say \"Not a leap year\"\nend"
+  },
+  {
+    "title": "Odd or Even",
+    "description": "Check if a number is odd or even.",
+    "code": "let n be 8\nif n mod 2 is 0:\n  say \"Even\"\nelse:\n  say \"Odd\"\nend"
+  },
+  {
+    "title": "Factorial (Loop)",
+    "description": "Calculate factorial using a loop.",
+    "code": "let n be 5\nlet fact be 1\nrepeat i from 1 to n:\n  let fact be fact * i\nend\nsay fact"
+  },
+  {
+    "title": "Fibonacci Sequence",
+    "description": "Print first 5 Fibonacci numbers.",
+    "code": "let a be 0\nlet b be 1\nsay a\nsay b\nrepeat 3 times:\n  let temp be a + b\n  say temp\n  let a be b\n  let b be temp\nend"
+  },
+  {
+    "title": "Simple Calculator",
+    "description": "Basic arithmetic operations.",
+    "code": "let x be 10\nlet y be 5\nsay x + y\nsay x - y\nsay x * y\nsay x / y"
+  },
+  {
+    "title": "Power of Number",
+    "description": "Calculate x raised to power y.",
+    "code": "let x be 2\nlet y be 3\nsay x ^ y"
+  },
+  {
+    "title": "Check Palindrome",
+    "description": "Determine if a string is a palindrome.",
+    "code": "let word be \"level\"\nlet reversed be reverse(word)\nif word is reversed:\n  say \"Palindrome\"\nelse:\n  say \"Not a palindrome\"\nend"
+  },
+  {
+    "title": "Find HCF",
+    "description": "Calculate the highest common factor.",
+    "code": "let a be 54\nlet b be 24\nwhile b is not 0:\n  let temp be b\n  let b be a mod b\n  let a be temp\nend\nsay a"
+  },
+  {
+    "title": "Find LCM",
+    "description": "Calculate the lowest common multiple.",
+    "code": "let a be 4\nlet b be 6\nlet hcf be 2\nlet lcm be (a * b) / hcf\nsay lcm"
+  },
+  {
+    "title": "Celsius to Fahrenheit",
+    "description": "Convert Celsius temperature to Fahrenheit.",
+    "code": "let c be 25\nlet f be (c * 9 / 5) + 32\nsay f"
+  },
+  {
+    "title": "Swap Two Variables",
+    "description": "Swap values without using a third variable.",
+    "code": "let a be 5\nlet b be 10\nlet a be a + b\nlet b be a - b\nlet a be a - b\nsay a\nsay b"
+  },
+  {
+    "title": "Random Number",
+    "description": "Generate a random number.",
+    "code": "import random\nlet n be random between 1 and 100\nsay n"
+  },
+  {
+    "title": "Check Anagram",
+    "description": "Check if two strings are anagrams.",
+    "code": "let a be sort(\"listen\")\nlet b be sort(\"silent\")\nif a is b:\n  say \"Anagram\"\nelse:\n  say \"Not anagram\"\nend"
+  },
+  {
+    "title": "Loop with Continue",
+    "description": "Skip specific iteration in a loop.",
+    "code": "repeat i from 1 to 5:\n  if i is 3:\n    continue\n  end\n  say i\nend"
+  },
+  {
+    "title": "Loop with Break",
+    "description": "Exit loop when a condition is met.",
+    "code": "repeat i from 1 to 5:\n  if i is 4:\n    break\n  end\n  say i\nend"
+  },
+  {
+    "title": "List Iteration",
+    "description": "Loop through a list of items.",
+    "code": "set fruits to [\"apple\", \"banana\", \"cherry\"]\nfor each fruit in fruits:\n  say fruit\nend"
+  },
+  {
+    "title": "Reverse a Number",
+    "description": "Reverse the digits of a number.",
+    "code": "let num be 1234\nlet reversed be 0\nwhile num > 0:\n  let digit be num mod 10\n  let reversed be reversed * 10 + digit\n  let num be num div 10\nend\nsay reversed"
+  },
+  {
+    "title": "Sum of Natural Numbers",
+    "description": "Find the sum of first N natural numbers.",
+    "code": "let n be 5\nlet sum be 0\nrepeat i from 1 to n:\n  let sum be sum + i\nend\nsay sum"
+  },
+  {
+    "title": "Check Prime Number",
+    "description": "Determine whether a number is prime.",
+    "code": "let n be 7\nlet isPrime be true\nif n is 1:\n  let isPrime be false\nelse:\n  repeat i from 2 to n - 1:\n    if n mod i is 0:\n      let isPrime be false\n      break\n    end\n  end\nend\nsay isPrime"
+  },
+  {
+    "title": "Print Prime Numbers",
+    "description": "Print all primes up to N.",
+    "code": "let n be 10\nrepeat i from 2 to n:\n  let prime be true\n  repeat j from 2 to i - 1:\n    if i mod j is 0:\n      let prime be false\n      break\n    end\n  end\n  if prime:\n    say i\n  end\nend"
+  },
+  {
+    "title": "Sum of Digits",
+    "description": "Calculate the sum of digits of a number.",
+    "code": "let num be 123\nlet sum be 0\nwhile num > 0:\n  let sum be sum + (num mod 10)\n  let num be num div 10\nend\nsay sum"
+  },
+  {
+    "title": "Multiplication Table",
+    "description": "Print the multiplication table of a number.",
+    "code": "let n be 5\nrepeat i from 1 to 10:\n  say n + \" x \" + i + \" = \" + (n * i)\nend"
+  },
+  {
+    "title": "Armstrong Number",
+    "description": "Check if a number is an Armstrong number.",
+    "code": "let num be 153\nlet total be 0\nlet temp be num\nwhile temp > 0:\n  let digit be temp mod 10\n  let total be total + digit ^ 3\n  let temp be temp div 10\nend\nif total is num:\n  say \"Armstrong\"\nelse:\n  say \"Not Armstrong\"\nend"
+  },
+  {
+    "title": "Find ASCII Value",
+    "description": "Display the ASCII value of a character.",
+    "code": "let ch be \"A\"\nsay ascii of ch"
+  },
+  {
+    "title": "Find Largest Number",
+    "description": "Compare three numbers and find the largest.",
+    "code": "let a be 10\nlet b be 20\nlet c be 15\nif a > b and a > c:\n  say a\nelse if b > c:\n  say b\nelse:\n  say c\nend"
+  },
+  {
+    "title": "Count Digits",
+    "description": "Count number of digits in a number.",
+    "code": "let num be 12345\nlet count be 0\nwhile num > 0:\n  let num be num div 10\n  let count be count + 1\nend\nsay count"
+  },
+  {
+    "title": "Check Perfect Number",
+    "description": "Determine if a number is perfect.",
+    "code": "let n be 6\nlet sum be 0\nrepeat i from 1 to n - 1:\n  if n mod i is 0:\n    let sum be sum + i\n  end\nend\nif sum is n:\n  say \"Perfect\"\nelse:\n  say \"Not Perfect\"\nend"
+  },
+  {
+    "title": "Check Strong Number",
+    "description": "Check if number is equal to sum of factorial of its digits.",
+    "code": "let num be 145\nlet sum be 0\nlet temp be num\ndefine factorial(n):\n  let f be 1\n  repeat i from 1 to n:\n    let f be f * i\n  end\n  return f\nend\nwhile temp > 0:\n  let digit be temp mod 10\n  let sum be sum + factorial(digit)\n  let temp be temp div 10\nend\nif sum is num:\n  say \"Strong\"\nelse:\n  say \"Not Strong\"\nend"
+  },
+  {
+    "title": "Sum of Series",
+    "description": "Calculate sum of the series 1 + 2 + 3 + ... + n.",
+    "code": "let n be 10\nlet sum be 0\nrepeat i from 1 to n:\n  let sum be sum + i\nend\nsay sum"
+  },
+  {
+    "title": "Sum of Even Numbers",
+    "description": "Sum all even numbers up to N.",
+    "code": "let n be 10\nlet sum be 0\nrepeat i from 2 to n step 2:\n  let sum be sum + i\nend\nsay sum"
+  },
+  {
+    "title": "Sum of Odd Numbers",
+    "description": "Sum all odd numbers up to N.",
+    "code": "let n be 10\nlet sum be 0\nrepeat i from 1 to n step 2:\n  let sum be sum + i\nend\nsay sum"
+  },
+  {
+    "title": "Print Alphabets",
+    "description": "Print all uppercase English letters.",
+    "code": "repeat i from 65 to 90:\n  say char of i\nend"
+  },
+  {
+    "title": "Count Vowels",
+    "description": "Count number of vowels in a string.",
+    "code": "let s be \"hello world\"\nlet count be 0\nset vowels to [\"a\", \"e\", \"i\", \"o\", \"u\"]\nfor each ch in s:\n  if ch in vowels:\n    let count be count + 1\n  end\nend\nsay count"
+  },
+  {
+    "title": "Check Armstrong in Interval",
+    "description": "Find Armstrong numbers in a range.",
+    "code": "repeat num from 100 to 999:\n  let total be 0\n  let temp be num\n  while temp > 0:\n    let digit be temp mod 10\n    let total be total + digit ^ 3\n    let temp be temp div 10\n  end\n  if total is num:\n    say num\n  end\nend"
+  },
+  {
+    "title": "Sum of Natural using Recursion",
+    "description": "Recursive sum of numbers.",
+    "code": "define sum(n):\n  if n is 0:\n    return 0\n  end\n  return n + sum(n - 1)\nend\nsay sum(5)"
+  },
+  {
+    "title": "Find Factors",
+    "description": "List all factors of a number.",
+    "code": "let n be 12\nrepeat i from 1 to n:\n  if n mod i is 0:\n    say i\n  end\nend"
+  },
+  {
+    "title": "Binary to Decimal",
+    "description": "Convert binary number to decimal.",
+    "code": "let binary be \"1010\"\nlet decimal be 0\nlet length be length of binary\nrepeat i from 0 to length - 1:\n  let bit be binary[length - i - 1]\n  if bit is \"1\":\n    let decimal be decimal + (2 ^ i)\n  end\nend\nsay decimal"
+  },
+  {
+    "title": "Decimal to Binary",
+    "description": "Convert decimal number to binary.",
+    "code": "let num be 10\nlet result be \"\"\nwhile num > 0:\n  let result be (num mod 2) + result\n  let num be num div 2\nend\nsay result"
+  },
+  {
+    "title": "Reverse String",
+    "description": "Reverse a given string.",
+    "code": "let text be \"ENG\"\nlet reversed be reverse(text)\nsay reversed"
+  },
+  {
+    "title": "Count Words",
+    "description": "Count words in a sentence.",
+    "code": "let sentence be \"ENG is easy\"\nlet words be split(sentence, \" \")\nsay length of words"
+  },
+  {
+    "title": "Check Substring",
+    "description": "Check if one string contains another.",
+    "code": "let text be \"hello world\"\nif \"world\" in text:\n  say \"Found\"\nelse:\n  say \"Not found\"\nend"
+  },
+  {
+    "title": "Capitalize Words",
+    "description": "Capitalize the first letter of each word.",
+    "code": "let text be \"hello eng language\"\nlet words be split(text, \" \")\nset result to []\nfor each word in words:\n  add capitalize(word) to result\nend\nsay join(result, \" \")"
+  },
+  {
+    "title": "Length of String",
+    "description": "Print the length of a string.",
+    "code": "let str be \"ENG\"\nsay length of str"
+  },
+  {
+    "title": "Swap First Last Characters",
+    "description": "Swap first and last character of a string.",
+    "code": "let str be \"ENG\"\nlet newStr be last of str + middle of str + first of str\nsay newStr"
+  },
+  {
+    "title": "Check Alphabet",
+    "description": "Check if a character is an alphabet.",
+    "code": "let ch be \"a\"\nif ch >= \"a\" and ch <= \"z\" or ch >= \"A\" and ch <= \"Z\":\n  say \"Alphabet\"\nelse:\n  say \"Not alphabet\"\nend"
+  },
+  {
+    "title": "Remove Punctuation",
+    "description": "Remove punctuation characters from a sentence.",
+    "code": "let text be \"Hello, world!\"\nset punctuations to [\".\", \",\", \"!\", \"?\"]\nlet clean be \"\"\nfor each ch in text:\n  if ch not in punctuations:\n    let clean be clean + ch\n  end\nend\nsay clean"
   }
 ]
