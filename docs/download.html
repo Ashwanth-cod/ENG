@@ -30,8 +30,131 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <!-- ✅ Styles (unchanged, your original CSS) -->
-  <style>
-    /* ... your original CSS here ... */
+<style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg, #fff);
+      color: var(--fg, #000);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: #007acc;
+      padding: 1rem 2rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav a, nav span {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      background: #007acc;
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      margin: 0 0 0.5rem 0;
+      color: #007acc;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #007acc;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .btn:hover {
+      background: #005fa3;
+    }
+
+    .card {
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    code {
+      background: #eee;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+
+    pre {
+      background: #f0f0f0;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #ccc;
+      margin-top: 3rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { --bg: #121212; --fg: #f0f0f0; }
+      header, .dropdown-content, nav a, nav span, .btn {
+        background-color: #1a1a1a;
+        color: #eee;
+      }
+      .card { background: #1f1f1f; border-color: #333; }
+      code, pre { background: #1b1b1b; color: #f8f8f2; }
+      footer { border-color: #333; }
+    }
   </style>
 </head>
 <body>

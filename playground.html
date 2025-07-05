@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ENG Playground (Function Support)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+    header {
+      background: #005fa3;
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      height: 220px;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: Consolas, monospace;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background: #007acc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    pre {
+      margin-top: 2rem;
+      background: #eaeaea;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    .output-label {
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ENG Language Playground</h1>
+    <p>Now with Function Support!</p>
+  </header>
+  <main>
+    <textarea id="codeInput" placeholder='say "Hello"\ndefine greet name:\n  return "Hi " + name\ncall greet "Sam"'></textarea>
+    <button onclick="runEngCode()">Run Code</button>
+    <div class="output-label">Output:</div>
+    <pre id="output"></pre>
+  </main>
+
+<script>
+function runEngCode() {
+  const input = document.getElementById('codeInput').value;
+  const outputEl = document.getElementById('output');
+
+  const context = {};
+  const functions = {};
+  let output = [];
+
+  const lines = input.split('\n');
+  let i = 0;
+
+  function evaluate(expr, localCtx = {}) {
+    // If it's a string literal, return as-is
+    if (/^["'].*["']$/.test(expr.trim())) return expr.slice(1, -1);
+
+    try {
+      return Function('context', 'with(context){ return ' + expr + '; }')({ ...context, ...localCtx });
+    } catch {
+      return expr;
+    }
+  }
+
+  while (i < lines.length) {
+    let line = lines[i].trim();
+    if (line === 'end') {
+      i++;
+      continue;
+    }
+
+    if (line.startsWith('say ')) {
+      const expr = line.slice(4).trim();
+      output.push(evaluate(expr));
+
+    } else if (line.startsWith('let ')) {
+      const match = line.match(/^let (.+?) = (.+)$/);
+      if (match) {
+        const [_, name, expr] = match;
+        context[name.trim()] = evaluate(expr);
+      }
+
+    } else if (line.startsWith('if ') && line.endsWith(':')) {
+      const condition = line.slice(3, -1).trim()
+        .replace(/ and /g, ' && ')
+        .replace(/ or /g, ' || ');
+      const trueBranch = [];
+      const falseBranch = [];
+      let branch = trueBranch;
+      i++;
+      while (i < lines.length) {
+        const inner = lines[i].trim();
+        if (inner === 'else:') branch = falseBranch;
+        else if (inner === 'end') break;
+        else branch.push(inner);
+        i++;
+      }
+      const condResult = evaluate(condition);
+      const execBranch = condResult ? trueBranch : falseBranch;
+      execBranch.forEach(stmt => lines.splice(i, 0, stmt));
+
+    } else if (line.startsWith('define ')) {
+      const match = line.match(/^define ([a-zA-Z_][\w]*)\s+([a-zA-Z_][\w]*):$/);
+      if (match) {
+        const [_, fnName, param] = match;
+        const body = [];
+        i++;
+        while (i < lines.length && lines[i].startsWith('  ')) {
+          body.push(lines[i].trim());
+          i++;
+        }
+        i--;
+        functions[fnName] = { param, body };
+      }
+
+    } else if (line.startsWith('call ')) {
+      const parts = line.split(/\s+/);
+      const fnName = parts[1];
+      const argExpr = parts.slice(2).join(' ');
+      const argValue = evaluate(argExpr);
+
+      const fn = functions[fnName];
+      if (fn) {
+        const local = {};
+        local[fn.param] = argValue;
+
+        for (let stmt of fn.body) {
+          if (stmt.startsWith('return ')) {
+            const retExpr = stmt.slice(7).trim();
+            const val = evaluate(retExpr, local);
+            output.push(val);
+            break;
+          } else if (stmt.startsWith('say ')) {
+            const msg = stmt.slice(4).trim();
+            output.push(evaluate(msg, local));
+          }
+        }
+      } else {
+        output.push('[Unknown function: ' + fnName + ']');
+      }
+
+    } else if (line !== '') {
+      output.push('[Unknown command] ' + line);
+    }
+
+    i++;
+  }
+
+  outputEl.textContent = output.join('\n');
+}
+</script>
+
+</body>
+</html>
