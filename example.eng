@@ -1,0 +1,13 @@
+let x be 7
+
+if x is greater than 10:
+  say "Big"
+elif x is less than 5:
+  say "Small"
+else:
+  say "Medium"
+
+define greet name -> void
+  say "Hello, " + name
+
+call greet Alice
