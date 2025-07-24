@@ -30,10 +30,10 @@
 
     nav ul {
       list-style: none;
-      padding: 0;
-      margin: 0;
       display: flex;
       gap: 1rem;
+      margin: 0;
+      padding: 0;
       flex-wrap: wrap;
     }
 
@@ -47,7 +47,6 @@
     .dropdown-content {
       position: absolute;
       top: 2.5rem;
-      left: 0;
       background: #007acc;
       display: none;
       flex-direction: column;
@@ -67,7 +66,7 @@
     }
 
     h1, h2, h3 {
-      margin: 0 0 0.75rem 0;
+      margin-bottom: 0.75rem;
     }
 
     h1 {
@@ -95,13 +94,13 @@
       padding: 2rem 1rem;
       font-size: 0.9rem;
       border-top: 1px solid #ccc;
-      margin-top: 2rem;
+      margin-top: 3rem;
       opacity: 0.8;
     }
 
     .sections {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
     }
@@ -142,6 +141,14 @@
       margin: 1rem auto;
     }
 
+    .downloads ul {
+      padding-left: 1.25rem;
+    }
+
+    .downloads li {
+      margin-bottom: 0.5rem;
+    }
+
     @media (prefers-color-scheme: dark) {
       body { --bg: #121212; --fg: #f0f0f0; }
       header, .dropdown-content, nav a, nav span, .btn {
@@ -166,87 +173,72 @@
     <h1>ENG Language</h1>
     <nav>
       <ul>
-        <li><a href="docs/intro.html">Intro</a></li>
-        <li><a href="docs/getting-started.html">Getting Started</a></li>
-        <li class="dropdown">
-          <span>Syntax ▾</span>
-          <ul class="dropdown-content">
-            <li><a href="docs/syntax-variables.html">Variables</a></li>
-            <li><a href="docs/syntax-functions.html">Functions</a></li>
-            <li><a href="docs/syntax-loops.html">Loops</a></li>
-            <li><a href="docs/syntax-conditionals.html">Conditionals</a></li>
-            <li><a href="docs/syntax-io.html">I/O</a></li>
-          </ul>
-        </li>
-        <li><a href="docs/reference.html">Reference</a></li>
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#syntax">Syntax</a></li>
+        <li><a href="#download">Download</a></li>
         <li><a href="playground.html">Playground</a></li>
-        <li><a href="docs/download.html">Download</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="intro">
       <h2>Welcome to the ENG Language 👋</h2>
       <p><strong>ENG</strong> is an intuitive, English-like programming language designed to teach coding using natural phrases. No symbols, no boilerplate—just logic in plain English.</p>
-      <a class="btn" href="docs/getting-started.html">Get Started →</a>
+      <a class="btn" href="#download">Download ENG →</a>
     </section>
 
-    <section class="sections">
+    <section class="sections" id="syntax">
 
       <div class="section-card">
         <h3>🧮 Variables</h3>
-        <p>Store values using clear, spoken-language syntax. For example: <code>let score be 100</code>. ENG supports automatic typing and reassignment.</p>
-        <p>Explore variable types, reassignment rules, and scope with practical examples.</p>
-        <a class="btn" href="docs/syntax-variables.html">Learn About Variables</a>
+        <p>Declare variables like: <code>let score = 100</code>. ENG supports dynamic typing and multiple assignment.</p>
+        <a class="btn" href="docs/syntax-variables.html">Learn Variables</a>
       </div>
 
       <div class="section-card">
         <h3>🔁 Loops</h3>
-        <p>Use <code>repeat</code> for fixed loops or <code>while</code> for conditional logic. Example:</p>
         <pre><code>repeat 5 times:
   say "Hello!"</code></pre>
-        <p>Loops are a fundamental part of ENG and are written with clarity and purpose.</p>
-        <a class="btn" href="docs/syntax-loops.html">Learn About Loops</a>
+        <a class="btn" href="docs/syntax-loops.html">Learn Loops</a>
       </div>
 
       <div class="section-card">
         <h3>🧠 Functions</h3>
-        <p>Create reusable logic using simple phrases. Example:</p>
         <pre><code>define greet(name):
   say "Hi " + name</code></pre>
-        <p>Functions can take parameters and be called like natural commands.</p>
-        <a class="btn" href="docs/syntax-functions.html">Learn About Functions</a>
+        <a class="btn" href="docs/syntax-functions.html">Learn Functions</a>
       </div>
 
       <div class="section-card">
         <h3>🔍 Conditionals</h3>
-        <p>Control your code with statements like <code>if</code>, <code>else if</code>, and <code>else</code>. Example:</p>
         <pre><code>if score > 90:
   say "Excellent"</code></pre>
-        <p>ENG supports common logical comparisons in human-friendly form.</p>
-        <a class="btn" href="docs/syntax-conditionals.html">Learn About Conditionals</a>
+        <a class="btn" href="docs/syntax-conditionals.html">Learn Conditionals</a>
       </div>
 
       <div class="section-card">
-        <h3>🗣️ I/O (Input & Output)</h3>
-        <p>Output with <code>say</code>. Input support coming soon. Example:</p>
+        <h3>🗣️ I/O</h3>
         <pre><code>say "What is your name?"</code></pre>
-        <p>Output is crucial for user interaction and debugging in ENG.</p>
-        <a class="btn" href="docs/syntax-io.html">Learn About I/O</a>
+        <a class="btn" href="docs/syntax-io.html">Learn I/O</a>
       </div>
 
-      <div class="section-card">
-        <h3>📦 Download ENG</h3>
-        <p>Install the ENG interpreter on your local machine to write and run scripts offline. Includes CLI, editor support, and sample projects.</p>
-        <ul>
-          <li>Available for Windows, macOS, Linux</li>
-          <li>ZIP, installer, or Python module</li>
-          <li>Offline playground and examples</li>
-        </ul>
-        <a class="btn" href="docs/download.html">Go to Download Page</a>
-      </div>
+    </section>
 
+    <section class="section-card downloads" id="download">
+      <h3>📦 Download ENG</h3>
+      <p>Install the ENG interpreter to start running ENG scripts locally. It includes:</p>
+      <ul>
+        <li>✔ CLI support</li>
+        <li>✔ Example projects</li>
+        <li>✔ Cross-platform (Windows, macOS, Linux)</li>
+      </ul>
+      <p><strong>Choose your platform:</strong></p>
+      <ul>
+        <li><a class="btn" href="downloads/eng.zip">Download .zip (All platforms)</a></li>
+        <li><a class="btn" href="downloads/installer.exe">Download Windows Installer</a></li>
+        <li><a class="btn" href="https://pypi.org/project/eng-lang/">Install via pip (Python)</a></li>
+      </ul>
     </section>
   </main>
 
