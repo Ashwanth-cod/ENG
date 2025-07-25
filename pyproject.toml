@@ -1,7 +1,7 @@
 [project]
 name = "eng"
 version = "0.1.0"
-description = "The easiest programming language ever"
+description = "The easiest programming language ever using the grammar of English"
 authors = [
   { name = "Ashwanth S", email = "fi.programming.tamil@gmail.com" }
 ]

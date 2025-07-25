@@ -1,4 +1,8 @@
-from .main import main
+from .main import run_file
+import sys
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) < 2:
+        print("Usage: python -m interpreter <file.eng>")
+    else:
+        run_file(sys.argv[1])

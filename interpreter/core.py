@@ -1,16 +1,10 @@
-from .runtime import process_line
-
-def run_file(filename):
-    with open(filename, 'r') as f:
-        lines = f.readlines()
-
-    context = {}  # shared context between all lines
-
-    i = 0
+def collect_block(lines, start_index):
+    block = [lines[start_index]]
+    i = start_index + 1
     while i < len(lines):
         line = lines[i].strip()
-        if not line or line.startswith("#"):
-            i += 1
-            continue
-        i = process_line(line, lines, i, context)  # pass context
+        block.append(lines[i])
+        if line == "end":
+            break
         i += 1
+    return block, i + 1

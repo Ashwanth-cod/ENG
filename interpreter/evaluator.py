@@ -1,8 +1,7 @@
 def evaluate_expression(expr, context):
-    # Replace variables in context into the expression
-    safe_context = {**context, "str": str, "int": int, "float": float}
-
+    expr = expr.replace("yes", "True").replace("no", "False")
     try:
-        return eval(expr, {"__builtins__": {}}, safe_context)
+        return eval(expr, {}, context)
     except Exception as e:
-        return f"Error: {e}"
+        print(f"Error evaluating '{expr}': {e}")
+        return None
