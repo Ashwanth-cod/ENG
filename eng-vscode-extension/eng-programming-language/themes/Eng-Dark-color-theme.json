@@ -1,0 +1,56 @@
+{
+  "name": "Eng Dark Theme",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1e1e1e",
+    "editor.foreground": "#d4d4d4"
+  },
+  "tokenColors": [
+    {
+      "scope": "keyword.control.eng",
+      "settings": {
+        "foreground": "#569CD6",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": "string.quoted.double.eng",
+      "settings": {
+        "foreground": "#CE9178"
+      }
+    },
+    {
+      "scope": "constant.numeric.eng",
+      "settings": {
+        "foreground": "#B5CEA8"
+      }
+    },
+    {
+      "scope": "constant.language.boolean.eng",
+      "settings": {
+        "foreground": "#9CDCFE",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": "keyword.input.eng",
+      "settings": {
+        "foreground": "#C586C0"
+      }
+    },
+    {
+      "scope": "entity.name.function.eng",
+      "settings": {
+        "foreground": "#DCDCAA",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": "comment.line.double-slash.eng",
+      "settings": {
+        "foreground": "#6A9955",
+        "fontStyle": "italic"
+      }
+    }
+  ]
+}
