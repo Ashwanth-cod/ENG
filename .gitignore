@@ -1,2 +1,3 @@
 example.eng
-interpreter/__pycache__
+interpreter/__pycache__/
+eng-vscode-extension/
