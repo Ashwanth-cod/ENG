@@ -11,7 +11,7 @@ def process_line(block, lines, index, context, env):
             result = evaluate_expression(expr, context)
             print(result)
         except Exception as e:
-            print(f"Error evaluating '{expr}': {e}")
+            print(f"Error in say: {e}")
 
     elif stripped.startswith("let "):
         code = stripped[4:].strip()
@@ -21,42 +21,46 @@ def process_line(block, lines, index, context, env):
             expr = expr_part.strip()
 
             if expr.startswith("input "):
-                parts = expr[6:].strip().split(None, 1)
-                if len(parts) == 2:
-                    prompt_and_type = parts[1].rsplit(" ", 1)
-                    if len(prompt_and_type) == 2:
-                        prompt, type_str = prompt_and_type
-                    else:
-                        prompt = prompt_and_type[0]
-                        type_str = "str"
-                else:
-                    prompt = parts[0]
-                    type_str = "str"
-
-                prompt = prompt.strip('"').strip("'")
                 try:
-                    raw_value = input(prompt + ": ")
+                    parts = expr[6:].strip().split(None, 1)
+                    if len(parts) == 2:
+                        prompt_raw, type_str = parts
+                    else:
+                        prompt_raw = parts[0]
+                        type_str = "str"
+
+                    prompt = prompt_raw.strip('"').strip("'")
+                    type_str = type_str.lower()
+                    raw_value = input(prompt + ": ").strip()
+
                     if type_str == "int":
                         value = int(raw_value)
                     elif type_str == "float":
                         value = float(raw_value)
                     elif type_str == "bool":
-                        value = True if raw_value.lower() in ["yes", "y"] else False
+                        low = raw_value.lower()
+                        if low in ["yes", "true"]:
+                            value = True
+                        elif low in ["no", "false"]:
+                            value = False
+                        else:
+                            raise ValueError("Expected yes/true or no/false")
                     else:
                         value = raw_value
+
                     context[name] = value
                     env[name] = value
                 except Exception as e:
-                    print(f"Error during input: {e}")
+                    print(f"Input error for '{name}': {e}")
             else:
                 try:
                     value = evaluate_expression(expr, context)
                     context[name] = value
                     env[name] = value
                 except Exception as e:
-                    print(f"Error assigning '{name}': {e}")
+                    print(f"Assignment error for '{name}': {e}")
         else:
-            print("Invalid let statement")
+            print("Syntax error: missing '=' in let statement")
 
     elif stripped.startswith("if ") and stripped.endswith(":"):
         condition = stripped[3:-1].strip()
@@ -87,31 +91,10 @@ def process_line(block, lines, index, context, env):
 
     elif stripped.startswith("call "):
         try:
-            call_line = stripped[5:].strip()
-            func_name, arg_str = call_line.split("(", 1)
-            func_name = func_name.strip()
-            args = [evaluate_expression(arg.strip(), context) for arg in arg_str.rstrip(")").split(",")]
-
-            if func_name in functions:
-                func_args, func_body = functions[func_name]
-                if len(args) != len(func_args):
-                    print(f"Error: {func_name} expected {len(func_args)} args, got {len(args)}")
-                    return
-                local_context = context.copy()
-                for arg_name, val in zip(func_args, args):
-                    local_context[arg_name] = val
-                for line in func_body:
-                    process_line([line], lines, index, local_context, env)
-            else:
-                print(f"Error: function '{func_name}' not defined")
+            expr = stripped[5:].strip()
+            evaluate_expression(expr, context)  # supports .append(), .get(), etc.
         except Exception as e:
-            print(f"Error calling function: {e}")
+            print(f"Function call error: {e}")
 
     elif stripped == "end":
         return
-
-    else:
-        try:
-            exec('\n'.join(block), env)
-        except Exception as e:
-            print(f"Exec error: {e}")

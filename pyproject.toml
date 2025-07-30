@@ -14,7 +14,7 @@ classifiers = [
 ]
 
 [project.scripts]
-eng = "interpreter:main"  # <- No folder prefix since interpreter.py is in root
+eng = "interpreter:main"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
